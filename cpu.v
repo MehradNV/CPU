@@ -1,0 +1,16 @@
+module cpu();
+wire clk ,RD_Address,data_out,pcout;
+integer write=1,reset=0;
+
+clock clock1(.clk(clk));
+insMem insMem1(.clk(clk),.RD_Address(RD_Address),.data_out(data_out));
+pc pc1(.clk(clk), .data_out(data_out) , .pcout(pcout) , .reset(reset) ,.write(write));
+
+
+
+
+
+
+
+
+endmodule;
