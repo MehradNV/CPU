@@ -1,8 +1,9 @@
-module register_bank (clk, instruction, read_register_2,read_register_1,write_data,
- MemtoRegMuxOutput, RegWrite,write_register, read_data_1, read_data_2);
+module register_bank (clk, instruction,MemtoRegMuxOutput, RegWrite, read_data_1, read_data_2);
  
- input [4:0] read_register_1,read_register_2,write_register,write_data;
- wire instruction[31:0],MemtoRegMuxOutput;
+ input clk;
+ reg [4:0] read_register_1,read_register_2,write_register,write_data;
+ input [31:0]instruction;
+ input MemtoRegMuxOutput,RegWrite;
  output read_data_1,read_data_2;
  
  always@(posedge clk)
