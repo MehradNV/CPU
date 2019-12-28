@@ -1,21 +1,36 @@
-module Controler(clk,instruction,ALUop);
+module Controler(clk,instruction,ALUop,RegWrite);
   
   input clk;
   input [31:0] instruction;
   wire [6:0] ins;
-  output [1:0] ALUop;
-  reg [1:0] result;
+  output reg RegWrite;
+  output reg [1:0] ALUop;
   
-  assign ins = instriction[6:0];
-  assign ALUop = result;
+  
+  assign ins = instruction[6:0];
+  
   
   always@(posedge clk)
   case(ins)
     
-    51 : result = 2;
-    3 : result = 0;
-    35 : result = 0;
-    99 : result = 1;
+    51 :begin
+         ALUop = 2;
+         RegWrite = 1;
+        end 
+    3 : begin
+        ALUop = 0;
+        RegWrite = 1;
+        end
+        
+    35 :begin
+        ALUop = 0;
+        RegWrite = 0;
+        end
+        
+    99 :begin
+         ALUop = 1;
+         RegWrite = 0;
+        end
   endcase
     
   

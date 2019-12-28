@@ -1,7 +1,8 @@
 module register_bank (clk, instruction,MemtoRegMuxOutput, RegWrite, read_data_1, read_data_2);
  
  input clk;
- wire [4:0] read_register_1,read_register_2,write_register,write_data;
+ reg [4:0] read_register_1,read_register_2,write_register;
+ reg []write_data;
  input [31:0]instruction;
  input MemtoRegMuxOutput,RegWrite;
  output read_data_1,read_data_2;
