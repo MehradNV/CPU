@@ -5,6 +5,6 @@ input clk;
 output reg [64:0] data_out;
 
 always@(posedge clk)
-  data_out={1'b0,extend_data};
+  data_out={1'b0,immgenout};
 
 endmodule
