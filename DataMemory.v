@@ -1,12 +1,12 @@
 module data_memory (
-input wire [31:0] addr,          // Memory Address
-input wire [31:0] write_data,    // Memory Address Contents
+input wire [31:0] addr,          
+input wire [31:0] write_data,    
 input wire memwrite, memread,
-input wire clk,                  // All synchronous elements, including memories, should have a clock signal
-output reg [31:0] read_data      // Output of Memory Address Contents
+input wire clk,                  
+output reg [31:0] read_data      
 );
 
-reg [31:0] MEMO[0:255];  // 256 words of 32-bit memory
+reg [31:0] MEMO[0:255]; 
 
 
 integer i;
@@ -18,12 +18,12 @@ initial begin
   end
 end
 
-// Using @(addr) will lead to unexpected behavior as memories are synchronous elements like registers
+
 always @(posedge clk) begin
   if (memwrite == 1'b1) begin
     MEMO[addr] <= write_data;
   end
-  // Use memread to indicate a valid address is on the line and read the memory into a register at that address when memread is asserted
+
   if (memread == 1'b1) begin
     read_data <= MEMO[addr];
   end
