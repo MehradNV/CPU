@@ -1,9 +1,9 @@
-module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite);
+module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite,MemToReg);
   
   input clk;
   input [31:0] instruction;
   wire [6:0] ins;
-  output reg RegWrite,MemRead,MemWrite;
+  output reg RegWrite,MemRead,MemWrite,MemToReg;
   output reg [1:0] ALUop;
   
   
@@ -18,6 +18,7 @@ module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite);
          RegWrite = 1;
          MemRead = 0;
          MemWrite = 0;
+         MemToReg = 0;
         end 
         
     3 : begin
@@ -25,6 +26,7 @@ module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite);
         RegWrite = 1;
         MemRead = 1;
         MemWrite = 0;
+        MemToReg = 1;
         end
         
     35 :begin
@@ -32,6 +34,7 @@ module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite);
         RegWrite = 0;
         MemRead = 0;
         MemWrite = 1;
+        MemToReg = 1'bx;
         end
         
     99 :begin
@@ -39,6 +42,7 @@ module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite);
          RegWrite = 0;
          MemRead = 0;
          MemWrite = 0;
+         MemToReg = 1'bx;
         end
   endcase
     

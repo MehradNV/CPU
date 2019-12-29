@@ -6,7 +6,8 @@ module register_bank (clk, instruction,MemtoRegMuxOutput, RegWrite, read_data_1,
  input [31:0]instruction;
  input [31:0]MemtoRegMuxOutput;
  input RegWrite;
- output read_data_1,read_data_2;
+ reg [31:0]ram[255:0];
+ output [31:0]read_data_1,read_data_2;
  
  always@(posedge clk)
  begin
@@ -22,8 +23,8 @@ module register_bank (clk, instruction,MemtoRegMuxOutput, RegWrite, read_data_1,
     end
   
  end
- assign read_data_1=read_register_1;
- assign read_data_2=read_register_2;
+ assign read_data_1=ram[read_register_1];
+ assign read_data_2=ram[read_register_2];
  endmodule  
   
   
