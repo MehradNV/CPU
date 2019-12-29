@@ -1,11 +1,11 @@
-module ALU(clk,read_data_1,read_data_2,ALUcontrol,ALUresult);
+module ALU(clk,read_data_1,read_data_2,ALUcontrol,ALUresult,zero);
   
   input clk;
   input [31:0] read_data_1,read_data_2;
   wire [31:0] r1,r2;
   input [3:0] ALUcontrol;
   output reg [31:0] ALUresult;
- 
+  output reg zero;
   
   assign r1 = read_data_1;
   assign r2 = read_data_2;
@@ -22,6 +22,13 @@ module ALU(clk,read_data_1,read_data_2,ALUcontrol,ALUresult);
       2: ALUresult = r1 + r2;
         
       6: ALUresult = r1 - r2;
-      endcase  
+      
+      endcase 
+      
+      if(ALUresult == 0)
+        zero = 1;
+      else
+        zero = 0;
+       
     end
 endmodule

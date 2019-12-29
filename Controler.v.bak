@@ -17,7 +17,7 @@ module Controler(clk,instruction,ALUop,RegWrite,MemRead,MemWrite,MemToReg);
          ALUop = 2;
          RegWrite = 1;
          MemRead = 0;
-         MemWrite = 0
+         MemWrite = 0;
          MemToReg = 0;
         end 
         

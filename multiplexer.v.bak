@@ -3,7 +3,7 @@ module multiplexer (
   input [31:0] read_data,
   input [31:0] read_data_2,  
   input [1:0] MemToReg,
-  output [31:0] out
+  output reg [31:0] out
  );  
  
  always

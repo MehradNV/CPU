@@ -1,0 +1,8 @@
+module adder(clk,a,b,s);
+  input a,b,clk;
+  output s;
+  
+  always@(posedge clk)
+    s = a + b;
+    
+  endmodule
