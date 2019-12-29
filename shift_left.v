@@ -1,6 +1,6 @@
-module shift_left(clk,extend_data,data_out);
+module shift_left(clk,immgenout,data_out);
 
-input [63:0] extend_data;
+input [63:0] immgenout;
 input clk;
 output reg [64:0] data_out;
 
