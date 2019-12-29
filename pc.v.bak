@@ -1,6 +1,6 @@
 module pc(  clk , data_out , pcout , reset ,write);
 input clk , reset,write;
-parameter n=63;
+parameter n=31;
 input [n:0] data_out ;
 output  reg [n:0]  pcout;
 always @(posedge clk)
