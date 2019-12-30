@@ -2,12 +2,12 @@ module register_bank (clk, instruction,MemtoRegMuxOutput, RegWrite, read_data_1,
  
  input clk;
  reg [4:0] read_register_1,read_register_2,write_register;
- reg [31:0]write_data;
+ reg [63:0]write_data;
  input [31:0]instruction;
- input [31:0]MemtoRegMuxOutput;
+ input [63:0]MemtoRegMuxOutput;
  input RegWrite;
- reg [31:0]ram[255:0];
- output [31:0]read_data_1,read_data_2;
+ reg [63:0]ram[255:0];
+ output [63:0]read_data_1,read_data_2;
  
  always@(posedge clk)
  begin
