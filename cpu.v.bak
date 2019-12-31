@@ -1,16 +1,14 @@
 module cpu();
-wire clk ,RegWrite,MemRead,MemWrite,memtoreg,branch,
-alusrc,zero,AdderToMuxOut,MuxToPcOut,pctoadderout;
-wire [63:0] aluout,dmout,muxtoregbank,muxtopc,immgenout,muxtoalu,SLout;
+wire clk ,RegWrite,MemRead,MemWrite,memtoreg,branch,alusrc,zero;
+wire [63:0] aluout,dmout,muxtoregbank,muxtopc,immgenout,muxtoalu,SLout,AdderToMuxOut,MuxToPcOut,pctoadderout,rd1,rd2;
 wire [3:0] alucout;
-wire [4:0] rd1,rd2;
 wire [31:0]insMemOut;
 wire [1:0] ALUop;
-
+integer reset;
 
 clock clock1(.clk(clk));
 
-pc pc1(.clk(clk), .data_in(muxtopc) , .pcout(pcout) , .reset(1'b0) ,.write(1'b1));
+pc pc1(.clk(clk), .data_in(muxtopc) , .pcout(pcout) , .reset(reset) ,.write(1'b1));
 
 adder PcToAdder(.clk(clk), .a(pcout), .b(adderinput), .s(pctoadderout));
 
@@ -41,6 +39,11 @@ multiplexer MuxToPc(.clk(clk), .read_data(AdderToMuxOut), .read_data_2(pctoadder
  
 
 
+initial begin
+	reset = 1;
+	#10;
+	reset = 0;
+  end
 
 
 endmodule

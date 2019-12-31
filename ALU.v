@@ -15,13 +15,13 @@ module ALU(clk,read_data_1,read_data_2,ALUcontrol,ALUresult,zero);
     begin
       case(ALUcontrol)
       
-      0: ALUresult = r1 & r2;
+      4'b0000: ALUresult = r1 & r2;
          
-      1: ALUresult = r1 | r2;
+      4'b0001: ALUresult = r1 | r2;
         
-      2: ALUresult = r1 + r2;
+      4'b0010: ALUresult = r1 + r2;
         
-      6: ALUresult = r1 - r2;
+      4'b0110: ALUresult = r1 - r2;
       
       endcase 
       

@@ -13,7 +13,7 @@ module Controler(clk,instruction,Zero,ALUop,RegWrite,MemRead,MemWrite,MemToReg,A
   always@(posedge clk)
   case(ins)
     
-    51 :begin
+    7'b0110011 :begin
          ALUop = 2;
          RegWrite = 1;
          MemRead = 0;
@@ -23,7 +23,7 @@ module Controler(clk,instruction,Zero,ALUop,RegWrite,MemRead,MemWrite,MemToReg,A
          Branch = 0 & Zero;
         end 
         
-    3 : begin
+    7'b0000011 : begin
         ALUop = 0;
         RegWrite = 1;
         MemRead = 1;
@@ -33,7 +33,7 @@ module Controler(clk,instruction,Zero,ALUop,RegWrite,MemRead,MemWrite,MemToReg,A
         Branch = 0 & Zero;
         end
         
-    35 :begin
+    7'b0100011 :begin
         ALUop = 0;
         RegWrite = 0;
         MemRead = 0;
@@ -43,7 +43,7 @@ module Controler(clk,instruction,Zero,ALUop,RegWrite,MemRead,MemWrite,MemToReg,A
         Branch = 0 & Zero;
         end
         
-    99 :begin
+    7'b1100011 :begin
          ALUop = 1;
          RegWrite = 0;
          MemRead = 0;

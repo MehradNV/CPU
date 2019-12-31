@@ -8,7 +8,7 @@ reg [n:0]mem[1023:0];
 
 initial begin
 for(i=0;i<n;i=i+1)
-   mem[i] <=2'b01;
+   mem[i] <= i;
 end
 
 always@(posedge clk)

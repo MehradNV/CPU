@@ -5,7 +5,7 @@ module immgen(clk,instruction,immgenout);
   output reg [63:0]immgenout;
     
   
-  always@(posedge clk);
+  always@(posedge clk)
      case(instruction[6:0])
        3: immgenout = {52'b0,instruction[31:20]};
        35: immgenout = {52'b0,instruction[31:25],instruction[11:7]};

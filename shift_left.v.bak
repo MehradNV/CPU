@@ -4,7 +4,7 @@ input [63:0] immgenout;
 input clk;
 output reg [63:0] data_out;
 
-always
+always@(posedge clk)
   data_out={1'b0,immgenout};
 
 endmodule

@@ -1,10 +1,10 @@
 module ALU(clk,read_data_1,read_data_2,ALUcontrol,ALUresult,zero);
   
   input clk;
-  input [31:0] read_data_1,read_data_2;
-  wire [31:0] r1,r2;
+  input [63:0] read_data_1,read_data_2;
+  wire [63:0] r1,r2;
   input [3:0] ALUcontrol;
-  output reg [31:0] ALUresult;
+  output reg [63:0] ALUresult;
   output reg zero;
   
   assign r1 = read_data_1;
