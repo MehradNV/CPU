@@ -1,7 +1,7 @@
-module pc(  clk , data_out , pcout , reset ,write);
+module pc(  clk , data_in , pcout , reset ,write);
 input clk , reset,write;
-parameter n=31;
-input [n:0] data_out ;
+parameter n=63;
+input [n:0] data_in ;
 output  reg [n:0]  pcout;
 always @(posedge clk)
 begin
@@ -9,6 +9,6 @@ begin
         pcout = 0 ;
     else
        if (write)
-          pcout = data_out ;
+          pcout = data_in ;
 end
 endmodule;

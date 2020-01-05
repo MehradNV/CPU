@@ -11,4 +11,4 @@ begin
        if (write)
           pcout = data_in ;
 end
-endmodule;
+endmodule

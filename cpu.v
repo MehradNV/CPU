@@ -1,10 +1,14 @@
+
+
 module cpu();
 wire clk ,RegWrite,MemRead,MemWrite,memtoreg,branch,alusrc,zero;
-wire [63:0] aluout,dmout,muxtoregbank,muxtopc,immgenout,muxtoalu,SLout,AdderToMuxOut,MuxToPcOut,pctoadderout,rd1,rd2;
+wire [63:0] aluout,dmout,pcout,muxtoregbank,muxtopc,immgen,muxtoalu,SLout,AdderToMuxOut,MuxToPcOut,pctoadderout,rd1,rd2,adderinput;
 wire [3:0] alucout;
 wire [31:0]insMemOut;
 wire [1:0] ALUop;
-integer reset;
+reg reset;
+
+assign adderinput=4;
 
 clock clock1(.clk(clk));
 
@@ -17,15 +21,15 @@ insMem insMem1(.clk(clk),.RD_Address(pcout),.data_out(insMemOut));
 Controler controler1(.clk(clk), .instruction(insMemOut), .Zero(zero), .ALUop(ALUop),
  .RegWrite(RegWrite), .MemRead(MemRead), .MemWrite(MemWrite), .MemToReg(memtoreg), .ALUSrc(alusrc), .Branch(branch));
  
-immgen ig( .clk(clk), .instruction(insMemOut), .immgenout(immgenout)); 
+immgen ig( .clk(clk), .instruction(insMemOut), .immgenout(immgen)); 
  
 register_bank rb(.clk(clk), .instruction(insMemOut), .MemtoRegMuxOutput(muxtoregbank), .RegWrite(RegWrite), .read_data_1(rd1), .read_data_2(rd2));
 
-multiplexer MuxToAlu(.clk(clk), .read_data(immgenout), .read_data_2(rd2), .selector(alusrc), .out(muxtoalu));
+multiplexer MuxToAlu(.clk(clk), .read_data(immgen), .read_data_2(rd2), .selector(alusrc), .out(muxtoalu));
 
 alu_control aluc( .ALU_Cnt(alucout), .ALUOp(ALUop), .func7(insMemOut[31:25]), .func3(insMemOut[14:12]));
 
-shift_left SL(.clk(clk), .immgenout(immgenout), .data_out(SLout));
+shift_left SL(.clk(clk), .immgenout(immgen), .data_out(SLout));
 
 ALU alu( .clk(clk), .read_data_1(rd1), .read_data_2(rd2), .ALUcontrol(alucout), .ALUresult(aluout), .zero(zero));
 
@@ -40,9 +44,9 @@ multiplexer MuxToPc(.clk(clk), .read_data(AdderToMuxOut), .read_data_2(pctoadder
 
 
 initial begin
-	reset = 1;
+	 reset = 1;
 	#10;
-	reset = 0;
+	 reset = 0;
   end
 
 

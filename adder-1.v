@@ -1,8 +1,7 @@
-module adder(clk,a,b,s);
-  input a,b,clk;
-  output reg s;
-  
-  always@(posedge clk)
-    s = a + b;
+module adder(a,b,s);
+  input [63:0] a,b;
+  output [63:0] s;
+
+   assign s = a + b;
     
   endmodule

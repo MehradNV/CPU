@@ -6,7 +6,7 @@ module multiplexer (
   output reg [63:0] out
  );  
  
- always
+ always@(posedge clk)
  begin
   if (selector)  
     assign out = read_data; 
