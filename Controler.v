@@ -11,7 +11,7 @@ module Controler(clk,instruction,Zero,ALUop,RegWrite,MemRead,MemWrite,MemToReg,A
   
   
   always@(posedge clk)
-  case(ins)
+  casex(ins)
     
     7'b0110011 :begin
          ALUop = 2;
